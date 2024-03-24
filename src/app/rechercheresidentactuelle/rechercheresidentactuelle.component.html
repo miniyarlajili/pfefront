@@ -1,0 +1,117 @@
+<div class="container-xl">
+  <div class="table-responsive">
+      <div class="table-wrapper">
+
+          <div class="table-title">
+              <div class="row">
+                  <div class="col-sm-9">
+                      <h2>User <b>Management</b></h2>
+                  </div>
+                  <div class="col-sm-12">
+
+
+                     <button class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></button>
+               </div>
+              </div>
+          </div>
+          <br>
+          <form
+          class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          <div class="input-group" >
+              <input type="text" class="form-control bg-light border-0 small" placeholder="rechercher par nom"
+                  aria-label="Search" aria-describedby="basic-addon2"   id="nom" [(ngModel)]="nom" [ngModelOptions]="{standalone: true}">
+              <div class="input-group-append">
+                  <button class="btn btn-primary" (click)="getnom1(nom)" type="button">
+                      <i class="fas fa-search fa-sm" ></i>
+                  </button>
+              </div>
+          </div>
+      </form>
+      <form
+      class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+      <div class="input-group" >
+          <input type="number" class="form-control bg-light border-0 small" placeholder="rechercher par chambre"
+              aria-label="Search" aria-describedby="basic-addon2"   id="chambre" [(ngModel)]="chambre" [ngModelOptions]="{standalone: true}">
+          <div class="input-group-append">
+              <button class="btn btn-primary" (click)="  getnumchambre1(chambre)" type="button">
+                  <i class="fas fa-search fa-sm" ></i>
+              </button>
+          </div>
+      </div>
+  </form>
+  <br>
+  <br>
+
+
+      <table class="table table-striped table-hover" >
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>code</th>
+                <th>Nom</th>
+                <th>Datedepart</th>
+                <th>Datearrivé</th>
+                <th>Tel</th>
+
+                <th>age</th>
+                <th>cin</th>
+                <th>Numero chambre</th>
+                <th>Email</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="afficherall">
+          <tr *ngFor ="let n of residents">
+             <td>{{n.id}}</td>
+              <td>{{n.code}}</td>
+              <td>{{n.nom}}</td>
+              <td>{{n.date_Depart | date:'yyyy-MM-dd'}}</td>
+              <td>{{n.date_Arrive | date:'yyyy-MM-dd'}}</td>
+              <td>{{ n.tel}}</td>
+
+              <td>{{ n.age }}</td>
+              <td>{{ n.cin}}</td>
+              <td> {{ n.num_Chambre}}</td>
+              <td>{{ n.email}}</td>
+              <td>  <a class="delete" title="Delete" data-toggle="tooltip" (click)="deleteCar(n.id)"><i class="material-icons">&#xE5C9;</i></a></td>
+          </tr>
+
+      </tbody>
+        <tbody *ngIf="afficherparnom1">
+          <tr *ngFor ="let n of listnom1">
+              <td>{{n.id}}</td>
+               <td>{{n.code}}</td>
+               <td>{{n.nom}}</td>
+               <td>{{n.date_Depart | date:'yyyy-MM-dd'}}</td>
+               <td>{{n.date_Arrive | date:'yyyy-MM-dd'}}</td>
+               <td>{{ n.tel}}</td>
+
+               <td>{{ n.age }}</td>
+               <td>{{ n.cin}}</td>
+               <td> {{ n.num_Chambre}}</td>
+               <td>{{ n.email}}</td>
+               <td>  <a class="delete" title="Delete" data-toggle="tooltip" (click)="deleteCar(n.id)"><i class="material-icons">&#xE5C9;</i></a></td>
+           </tr>
+          </tbody>
+          <tbody *ngIf="afficherparchambre">
+            <tr *ngFor ="let n of listchambre">
+                <td>{{n.id}}</td>
+                 <td>{{n.code}}</td>
+                 <td>{{n.nom}}</td>
+                 <td>{{n.date_Depart | date:'yyyy-MM-dd'}}</td>
+                 <td>{{n.date_Arrive | date:'yyyy-MM-dd'}}</td>
+                 <td>{{ n.tel}}</td>
+
+                 <td>{{ n.age }}</td>
+                 <td>{{ n.cin}}</td>
+                 <td> {{ n.num_Chambre}}</td>
+                 <td>{{ n.email}}</td>
+                 <td>  <a class="delete" title="Delete" data-toggle="tooltip" (click)="deleteCar(n.id)"><i class="material-icons">&#xE5C9;</i></a></td>
+             </tr>
+            </tbody>
+          </table>
+
+
+
+
+

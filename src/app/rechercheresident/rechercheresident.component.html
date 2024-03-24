@@ -1,0 +1,198 @@
+
+
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <h2>User <b>Management</b></h2>
+                        </div>
+                        <div class="col-sm-12">
+
+                          <button (click)="afficherformulaire()" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></button>
+                           <button class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></button>
+                     </div>
+                    </div>
+                </div>
+                <br>
+                <form
+                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" *ngIf="afficherall">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                        aria-label="Search" aria-describedby="basic-addon2"   id="idCarte" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search fa-sm" ></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <form
+            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" *ngIf="afficherall">
+            <div class="input-group">
+                <input type="number" class="form-control bg-light border-0 small" placeholder="Search for..."
+                    aria-label="Search" aria-describedby="basic-addon2"   id="numchambre" [(ngModel)]="chambre" [ngModelOptions]="{standalone: true}">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button"(click)="getnumchambre(chambre)">
+                        <i class="fas fa-search fa-sm" ></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <form
+        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"*ngIf="afficherall">
+        <div class="input-group">
+            <input type="date" class="form-control bg-light border-0 small" placeholder="Search for..."
+                aria-label="Search" aria-describedby="basic-addon2"   id="numchambre" [(ngModel)]="date" [ngModelOptions]="{standalone: true}">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button"(click)="getdatedepart(date)">
+                    <i class="fas fa-search fa-sm" ></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <br>
+
+                <table class="table table-striped table-hover" >
+                    <thead *ngIf="afficherall">
+                        <tr>
+                            <th>ID</th>
+                            <th>code</th>
+                            <th>Nom</th>
+                            <th>Datedepart</th>
+                            <th>Datearrivé</th>
+                            <th>Tel</th>
+
+                            <th>age</th>
+                            <th>cin</th>
+                            <th>Numero chambre</th>
+                            <th>Email</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="afficherall">
+                        <tr *ngFor ="let n of residents">
+                           <td>{{n.id}}</td>
+                            <td>{{n.code}}</td>
+                            <td>{{n.nom}}</td>
+                            <td>{{n.date_Depart | date:'yyyy-MM-dd'}}</td>
+                            <td>{{n.date_Arrive | date:'yyyy-MM-dd'}}</td>
+                            <td>{{ n.tel}}</td>
+
+                            <td>{{ n.age }}</td>
+                            <td>{{ n.cin}}</td>
+                            <td> {{ n.num_Chambre}}</td>
+                            <td>{{ n.email}}</td>
+                            <td>  <a class="delete" title="Delete" data-toggle="tooltip" (click)="deleteCar(n.id)"><i class="material-icons">&#xE5C9;</i></a></td>
+                        </tr>
+
+                    </tbody>
+
+                    <tbody *ngIf="afficherparnom">
+                      <tr *ngFor ="let n of listnom">
+                        <td>{{n.id}}</td>
+                         <td>{{n.code}}</td>
+                         <td>{{n.nom}}</td>
+                         <td>{{n.date_Depart | date:'yyyy-MM-dd'}}</td>
+                         <td>{{n.date_Arrive | date:'yyyy-MM-dd'}}</td>
+                         <td>{{ n.tel}}</td>
+
+                         <td>{{ n.age }}</td>
+                         <td>{{ n.cin}}</td>
+                         <td> {{ n.num_Chambre}}</td>
+                         <td>{{ n.email}}</td>
+                         <td>  <a class="delete" title="Delete" data-toggle="tooltip" (click)="deleteCar(n.id)"><i class="material-icons">&#xE5C9;</i></a></td>
+                     </tr>
+                    </tbody>
+                    <tbody *ngIf="afficherparchambre">
+                      <tr *ngFor ="let n of listchambre">
+                        <td>{{n.id}}</td>
+                         <td>{{n.code}}</td>
+                         <td>{{n.nom}}</td>
+                         <td>{{n.date_Depart | date:'yyyy-MM-dd'}}</td>
+                         <td>{{n.date_Arrive | date:'yyyy-MM-dd'}}</td>
+                         <td>{{ n.tel}}</td>
+
+                         <td>{{ n.age }}</td>
+                         <td>{{ n.cin}}</td>
+                         <td> {{ n.num_Chambre}}</td>
+                         <td>{{ n.email}}</td>
+                         <td>  <a class="delete" title="Delete" data-toggle="tooltip" (click)="deleteCar(n.id)"><i class="material-icons">&#xE5C9;</i></a></td>
+                     </tr>
+                    </tbody>
+                    <tbody *ngIf="afficherdatedepart">
+                      <tr *ngFor ="let n of listdate">
+                        <td>{{n.id}}</td>
+                         <td>{{n.code}}</td>
+                         <td>{{n.nom}}</td>
+                         <td>{{n.date_Depart | date:'yyyy-MM-dd'}}</td>
+                         <td>{{n.date_Arrive | date:'yyyy-MM-dd'}}</td>
+                         <td>{{ n.tel}}</td>
+
+                         <td>{{ n.age }}</td>
+                         <td>{{ n.cin}}</td>
+                         <td> {{ n.num_Chambre}}</td>
+                         <td>{{ n.email}}</td>
+                         <td>  <a class="delete" title="Delete" data-toggle="tooltip" (click)="deleteCar(n.id)"><i class="material-icons">&#xE5C9;</i></a></td>
+                     </tr>
+                    </tbody>
+
+                </table>
+<div *ngIf="formulaire">
+  <form>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="code" aria-label="code"[(ngModel)]="addresid.code" [ngModelOptions]="{standalone: true}"><br>
+      </div>
+
+
+      <div class="col">
+        <input type="text" class="form-control" placeholder="nom" aria-label="nom"[(ngModel)]="addresid.nom" [ngModelOptions]="{standalone: true}"><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input type="date" class="form-control" placeholder="date Arrive" aria-label="date Arrive"[(ngModel)]="addresid.date_Arrive"format="yyyy-mm-dd"  [ngModelOptions]="{standalone: true}"required><br>
+      </div>
+        <div class="col">
+          <input type="date" class="form-control" placeholder="date depart" aria-label="Date depart"[(ngModel)]="addresid.date_Depart" format="yyyy-mm-dd" [ngModelOptions]="{standalone: true}"required><br>
+        </div>
+        </div>
+
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="tel" aria-label="tel"[(ngModel)]="addresid.tel" [ngModelOptions]="{standalone: true}"required><br>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="email" aria-label="email"[(ngModel)]="addresid.email" [ngModelOptions]="{standalone: true}"required><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="age" aria-label="age"[(ngModel)]="addresid.age" [ngModelOptions]="{standalone: true}"required><br>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="cin" aria-label="cin"[(ngModel)]="addresid.cin" [ngModelOptions]="{standalone: true}"required><br>
+      </div>
+    </div>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Numero chambre"  required   aria-label="tel"[(ngModel)]="addresid.num_Chambre" [ngModelOptions]="{standalone: true}"required><br>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="id carte" aria-label="id carte"[(ngModel)]="addresid.id_carte" [ngModelOptions]="{standalone: true}"required><br>
+        </div>
+      </div>
+
+    <button (click)="addResident(addresid)"> Ajouter</button>
+  </form>
+  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
